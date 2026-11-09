@@ -95,6 +95,18 @@ function setStatus(selector: string, value: string, isError = false) {
   node.dataset.state = isError ? 'error' : 'ok'
 }
 
+let toastTimer = 0
+function showTransactionToast(value: string, isError = false, keepOpen = false) {
+  const toast = $('#tx-toast')
+  const message = $('#tx-toast-message')
+  if (!toast || !message) return
+  window.clearTimeout(toastTimer)
+  message.textContent = value
+  toast.dataset.state = isError ? 'error' : 'ok'
+  toast.hidden = false
+  if (!keepOpen) toastTimer = window.setTimeout(() => { toast.hidden = true }, 9000)
+}
+
 function renderWallets() {
   const host = $('#wallet-options')
   if (!host) return
@@ -238,14 +250,21 @@ async function writableContract() {
 
 async function submitTransaction(selector: string, label: string, action: () => Promise<{ hash: string; wait(): Promise<unknown> }>) {
   try {
-    setStatus(selector, `${label}: confirm the request in your wallet.`)
+    const waiting = `${label}: open your wallet and confirm the request.`
+    setStatus(selector, waiting)
+    showTransactionToast(waiting, false, true)
     const transaction = await action()
-    setStatus(selector, `Transaction submitted: ${transaction.hash.slice(0, 10)}… Waiting for BOT Chain confirmation.`)
+    const submitted = `Transaction submitted: ${transaction.hash.slice(0, 10)}… Waiting for BOT Chain confirmation.`
+    setStatus(selector, submitted)
+    showTransactionToast(submitted, false, true)
     await transaction.wait()
     setStatus(selector, 'Transaction confirmed on BOT Chain.')
+    showTransactionToast('Transaction confirmed on BOT Chain.')
     await refreshAll()
   } catch (error) {
-    setStatus(selector, friendlyError(error), true)
+    const message = friendlyError(error)
+    setStatus(selector, message, true)
+    showTransactionToast(message, true, true)
   }
 }
 
@@ -387,6 +406,10 @@ $('#withdraw-form')?.addEventListener('submit', event => {
 })
 
 $('#claim-rewards')?.addEventListener('click', () => void submitTransaction('#pool-status', 'Claim premium share', async () => (await writableContract()).claimRewards()))
+$('#tx-toast-close')?.addEventListener('click', () => {
+  const toast = $('#tx-toast')
+  if (toast) toast.hidden = true
+})
 
 $('#weather-form')?.addEventListener('submit', event => {
   event.preventDefault(); const data = formData(event.currentTarget as HTMLFormElement)

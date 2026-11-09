@@ -149,6 +149,28 @@ label > span { position: absolute; right: 12px; bottom: 15px; font-family: var(-
 .link-button { border: 0; border-bottom: 1px solid currentColor; background: transparent; color: #93d6df; padding: 10px 0; justify-self: start; cursor: pointer; }
 .pool-actions p { min-height: 44px; color: var(--p-inv-muted); font-size: 14px; }
 
+.tx-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  width: min(440px, calc(100vw - 32px));
+  padding: 16px 18px;
+  border: 1px solid var(--p-ink);
+  background: #171717;
+  color: var(--p-bg);
+  box-shadow: 0 18px 50px rgb(0 0 0 / .28);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: start;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.tx-toast[hidden] { display: none; }
+.tx-toast[data-state="error"] { border-color: #d95c48; }
+.tx-toast button { min-height: 44px; border: 0; border-bottom: 1px solid currentColor; padding: 0; background: transparent; color: #93d6df; cursor: pointer; }
+
 .weather-layout { display: grid; grid-template-columns: 4fr 8fr; grid-template-rows: auto 1fr; gap: 42px 48px; }
 .weather-form { display: grid; grid-template-columns: 1.2fr 1.5fr 1fr auto; gap: 12px; align-items: end; }
 .weather-form p { grid-column: 1 / -1; min-height: 20px; margin: 0; color: var(--muted); }
@@ -201,6 +223,10 @@ label > span { position: absolute; right: 12px; bottom: 15px; font-family: var(-
   .faq-split { grid-template-columns: 1fr; }
   .faq-split > .faq { grid-column: auto; }
   .wallet-panel__inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .tx-toast { right: 16px; bottom: 16px; }
 }
 
 @media (max-width: 639px) {

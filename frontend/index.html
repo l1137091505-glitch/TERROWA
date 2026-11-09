@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" data-radius="sharp" data-buttons="arrow" data-motion>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="page-kind" content="software" />
+    <meta name="theme-color" content="#dedad3" />
+    <title>TERROWA: crop coverage on BOT Chain</title>
+    <meta name="description" content="An experimental BOT Chain workspace for crop policies, evidence-backed claims and pooled reserves." />
+    <meta property="og:title" content="TERROWA: crop coverage on BOT Chain" />
+    <meta property="og:description" content="Configure crop cover, file evidence-backed claims and inspect the pool reserve." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/share.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/system.css" />
+    <link rel="stylesheet" href="/assets/ui/base.css" />
+    <link rel="stylesheet" href="/assets/ui/cards.css" />
+    <link rel="stylesheet" href="/assets/motion/motion.css" />
+    <link rel="stylesheet" href="/assets/backgrounds/backgrounds.css" />
+    <link rel="stylesheet" href="/assets/layout/layout.css" />
+    <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700);document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+    <link rel="modulepreload" href="/assets/moments/moments.js" />
+    <link rel="modulepreload" href="/assets/moments/lib.js" />
+    <link rel="modulepreload" href="/assets/moments/pinned-chapters/moment.js" />
+    <link rel="modulepreload" href="/assets/moments/liquid-type/moment.js" />
+    <style>
+      :root {
+        --p-bg: #dedad3; --p-surface: #d3cec6; --p-ink: #0a0a0a; --p-muted: #55514c;
+        --p-accent: #256f82; --p-accent-ink: #ffffff; --p-action: #256f82; --p-action-ink: #ffffff;
+        --p-inv-bg: #0a0a0a; --p-inv-surface: #151515; --p-inv-ink: #dedad3; --p-inv-muted: #84827e;
+        --p-inv-accent: #256f82; --p-inv-accent-ink: #ffffff; --p-inv-action: #256f82; --p-inv-action-ink: #ffffff;
+        --font-display: "Onest", system-ui, sans-serif; --font-text: "Onest", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+        --display-weight: 400; --display-tracking: -0.035em; --display-tracking-xl: -0.04em;
+      }
+    </style>
+  </head>
+  <body class="paper topglow">
+    <!-- Deal: triptych / nav-cards / footer-columns / close-word / space / arrow / wordmark -->
+    <header class="nav" data-nav>
+      <div class="wrap nav__bar">
+        <a class="skip-link" href="#top">Skip to content</a>
+        <a class="nav__logo" href="#top" aria-label="TERROWA home">TERROWA</a>
+        <nav class="nav__links" aria-label="Primary navigation">
+          <a class="nav__link" href="#buy">Cover</a>
+          <a class="nav__link" href="#policies">Policies</a>
+          <a class="nav__link" href="#claims">Claims</a>
+          <a class="nav__link" href="#pool">Pool</a>
+          <a class="nav__link" href="#weather">Weather</a>
+        </nav>
+        <div class="nav__actions">
+          <button class="btn btn--secondary" id="connect-wallet" type="button">Connect wallet</button>
+          <a class="btn btn--primary" href="#buy">Configure crop cover<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+        </div>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
+      </div>
+      <div class="wallet-panel" id="wallet-panel" hidden>
+        <div class="wrap wallet-panel__inner">
+          <div><strong>Choose a wallet</strong><p>TERROWA requests access only after you choose a provider.</p></div>
+          <div class="wallet-options" id="wallet-options"></div>
+          <a class="link" id="mobile-wallet" href="https://metamask.app.link/dapp/" target="_blank" rel="noreferrer">Open a mobile wallet</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero hero--triptych" data-enter aria-labelledby="hero-h">
+        <div class="wrap"><div class="hero-text grid hero__grid">
+          <div class="span-3">
+            <p class="hero-kicker">BOT Chain · network 677</p>
+            <h1 id="hero-h">Crop coverage for BOT Chain farms</h1>
+            <p class="hero__lead">Set the crop, region, value and term. TERROWA prices the policy on-chain and keeps every claim tied to its evidence record.</p>
+          </div>
+          <div class="ly-collage span-6 start-4" role="img" aria-label="A crop policy, a reserve gauge and a claim record in the TERROWA interface">
+            <div class="ly-collage__set is-on">
+              <div class="ly-piece crop-map" style="left:4%;top:6%;width:58%;height:58%"><span class="map-label">FIELD 08 · NORTH</span><i></i><i></i><i></i><b>Wheat</b></div>
+              <div class="ly-piece policy-slip" style="left:38%;top:38%;width:58%;height:58%"><small>Policy 0018</small><strong>Drought cover</strong><dl><div><dt>Term</dt><dd>120 days</dd></div><div><dt>Cap</dt><dd>80%</dd></div><div><dt>Status</dt><dd>Active</dd></div></dl></div>
+              <div class="ly-piece reserve-chip" style="left:66%;top:10%;width:30%"><small>Reserve</small><strong>Ready</strong><span>Liability checked</span></div>
+            </div>
+            <div class="ly-collage__set" aria-hidden="true">
+              <div class="ly-piece claim-sheet" style="left:4%;top:8%;width:62%;height:78%"><small>Claim 0007</small><strong>Evidence received</strong><p>bafy…8q2r</p><div class="claim-line"></div><span>Assessment pending</span></div>
+              <div class="ly-piece severity" style="left:58%;top:42%;width:38%;height:54%"><small>Weather report</small><b>62</b><span>Flood severity</span></div>
+            </div>
+            <div class="ly-collage__set" aria-hidden="true">
+              <div class="ly-piece pool-meter" style="left:4%;top:8%;width:92%;height:42%"><small>POOL CAPACITY</small><div><i style="width:68%"></i></div><strong>68% available</strong></div>
+              <div class="ly-piece stake-ticket" style="left:4%;top:56%;width:46%;height:40%"><small>Your stake</small><strong>24.00 BOT</strong><span>Unlocks in 7 days</span></div>
+              <div class="ly-piece weather-grid" style="left:54%;top:56%;width:42%;height:40%"><small>REGISTER</small><span>Drought · 21</span><span>Flood · 62</span><span>Frost · 08</span></div>
+            </div>
+          </div>
+          <div class="span-3 start-10 hero__cta"><a class="btn btn--primary" href="#buy">Configure crop cover<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a></div>
+        </div></div>
+      </section>
+
+      <section class="section" id="buy" aria-labelledby="buy-h">
+        <div class="wrap">
+          <div class="section-head section-head--row"><div><h2 id="buy-h">Price a crop policy</h2></div><p>Choose one hazard, enter the declared value and set a term from 30 to 365 days. The contract returns the premium and payout cap before the wallet opens.</p></div>
+          <div class="app ui fill" role="region" aria-label="Crop policy configuration workspace">
+            <div class="app__pane app__pane--list policy-context">
+              <div class="appbar"><span>Policy desk</span><span id="network-status">Network 677</span></div>
+              <div class="context-list"><button type="button" class="is-active">New policy <span>Draft</span></button><button type="button">Policy register <span id="policy-count">0</span></button><button type="button">Claims desk <span id="claim-count">0</span></button><button type="button">Reserve pool <span id="reserve-mini">0 BOT</span></button></div>
+              <div class="contract-note" id="contract-status">Preview mode: deploy the contract and add VITE_TERROWA_ADDRESS.</div>
+            </div>
+            <div class="app__pane app__pane--open">
+              <form class="cover-form" id="cover-form">
+                <div class="form-head"><div><small>New crop cover</small><strong>Underwriting form</strong></div><span id="wallet-short">Wallet not connected</span></div>
+                <div class="form-grid">
+                  <label>Coverage type<select name="coverage" required><option value="0">Drought</option><option value="1">Flood</option><option value="2">Frost</option><option value="3">Pest</option><option value="4">Comprehensive</option></select></label>
+                  <label>Crop<input name="crop" autocomplete="off" value="Winter wheat" required /></label>
+                  <label>Farm region<input name="region" autocomplete="address-level2" value="North field" required /></label>
+                  <label>Declared value<input name="cropValue" inputmode="decimal" value="10" required /><span>BOT</span></label>
+                  <label>Coverage term<input name="duration" inputmode="numeric" value="120" min="30" max="365" required /><span>days</span></label>
+                </div>
+                <div class="quote-row"><div><small>Estimated premium</small><strong id="quote-premium">0.099 BOT</strong></div><div><small>Payout cap</small><strong id="quote-cap">8.00 BOT</strong></div><div><small>Available reserve</small><strong id="quote-reserve">0 BOT</strong></div></div>
+                <button class="btn btn--primary" type="submit">Buy crop cover<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></button>
+                <p class="form-status" id="cover-status" role="status">Connect a wallet and review the values before submitting.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="policies" aria-labelledby="policies-h">
+        <div class="wrap policy-section">
+          <div class="section-head"><h2 id="policies-h">Policies keep their status</h2><p>Each policy shows its term, maximum payout and claim state. Expired cover can be synced to release unused liability.</p></div>
+          <div class="ledger" id="policy-ledger" role="region" aria-live="polite" aria-label="Policy ledger"><div class="ledger__head"><span>ID</span><span>Crop and region</span><span>Term</span><span>Payout cap</span><span>Status</span></div><div class="empty-row">No policies found for this wallet.</div></div>
+          <form class="inline-action" id="expire-form"><label>Policy ID<input name="policyId" inputmode="numeric" required /></label><button class="btn btn--secondary" type="submit">Sync expired policy</button><p id="expire-status" role="status"></p></form>
+        </div>
+      </section>
+
+      <section class="section claims-moment" id="claims" data-moment="pinned-chapters" aria-labelledby="claims-h">
+        <div class="wrap mo-pc__grid">
+          <div class="mo-pc__text">
+            <h2 id="claims-h">Claims carry evidence</h2>
+            <ol class="mo-pc__steps">
+              <li class="mo-pc__step"><h3>File the loss record</h3><p>The farmer sends a policy ID, requested amount, short loss record and one IPFS CID.</p><figure class="mo-pc__visual"><div class="claim-visual"><small>01 · FARMER</small><strong>Evidence attached</strong><span>bafy…4f8k</span><i>Requested 2.40 BOT</i></div></figure></li>
+              <li class="mo-pc__step"><h3>Review the claim</h3><p>The appointed assessor checks the record and writes an approval or rejection note on-chain.</p><figure class="mo-pc__visual"><div class="claim-visual"><small>02 · ASSESSOR</small><strong>Review pending</strong><span>Policy 0018</span><i>Decision requires wallet</i></div></figure></li>
+              <li class="mo-pc__step"><h3>Pay from the reserve</h3><p>An approved amount transfers only when the remaining balance can still support every active policy.</p><figure class="mo-pc__visual"><div class="claim-visual"><small>03 · CONTRACT</small><strong>Solvency checked</strong><span>Reserve after payment</span><i>Liability remains covered</i></div></figure></li>
+            </ol>
+          </div>
+          <div class="mo-pc__visuals frame"></div>
+        </div>
+      </section>
+
+      <section class="section" id="claim-actions" aria-labelledby="claim-actions-h">
+        <div class="wrap split-forms">
+          <div><div class="section-head"><h2 id="claim-actions-h">File and review a claim</h2><p>Evidence stays outside the contract. TERROWA records its CID and the assessor's decision.</p></div>
+            <form class="stack-form" id="claim-form"><label>Policy ID<input name="policyId" inputmode="numeric" required /></label><label>Requested amount<input name="amount" inputmode="decimal" required /><span>BOT</span></label><label>Loss record<textarea name="loss" required>Floodwater reached the lower field and damaged the planted rows.</textarea></label><label>Evidence CID<input name="cid" value="bafybeigdyrzt5sfp7udm7hu76uh7y26nf3pte6fpjpln4uf5p5xq" required /></label><button class="btn btn--primary" type="submit">File a claim</button><p id="claim-status" role="status"></p></form>
+          </div>
+          <div class="assessor-panel"><h3>Assessor review</h3><p>Only the owner or appointed assessor can submit this decision.</p><form class="stack-form" id="review-form"><label>Claim ID<input name="claimId" inputmode="numeric" required /></label><label>Decision<select name="approve"><option value="true">Approve and pay</option><option value="false">Reject claim</option></select></label><label>Assessor note<textarea name="note" required>Evidence checked against the submitted policy record.</textarea></label><button class="btn btn--secondary" type="submit">Review claim</button><p id="review-status" role="status"></p></form></div>
+        </div>
+      </section>
+
+      <section class="section reserve-statement" data-moment="liquid-type" aria-labelledby="reserve-statement-h"><div class="wrap"><h2 class="mo-lt__type" id="reserve-statement-h">Cover needs reserves</h2><p>TERROWA checks unreserved BOT before a policy is issued, before a claim is paid and before pool stake leaves.</p></div></section>
+
+      <section class="section" id="pool" aria-labelledby="pool-h">
+        <div class="wrap pool-layout">
+          <div class="section-head"><h2 id="pool-h">The reserve backs every payout</h2><p>Stake BOT to add capacity. Premium share accrues on-chain, while withdrawals wait seven days and remain subject to open policy liabilities.</p><p class="admission">A withdrawal can remain blocked while active cover needs the liquidity.</p></div>
+          <div class="reserve-board"><div class="reserve-orbit"><span>Available reserve</span><strong id="reserve-total">0 BOT</strong><i></i></div><dl><div><dt>Your stake</dt><dd id="stake-total">0 BOT</dd></div><div><dt>Accrued share</dt><dd id="reward-total">0 BOT</dd></div><div><dt>Lock ends</dt><dd id="unlock-time">—</dd></div><div><dt>Active liability</dt><dd id="liability-total">0 BOT</dd></div></dl></div>
+          <div class="pool-actions"><form id="stake-form"><label>Stake amount<input name="amount" inputmode="decimal" required /><span>BOT</span></label><button class="btn btn--primary" type="submit">Add pool stake</button></form><form id="withdraw-form"><label>Withdraw amount<input name="amount" inputmode="decimal" required /><span>BOT</span></label><button class="btn btn--secondary" type="submit">Withdraw pool stake</button></form><button class="link-button" id="claim-rewards" type="button">Claim premium share</button><p id="pool-status" role="status"></p></div>
+        </div>
+      </section>
+
+      <section class="section" id="weather" aria-labelledby="weather-h">
+        <div class="wrap weather-layout"><div class="section-head"><h2 id="weather-h">Weather reports stay separate</h2><p>The contract owner can publish a hazard, region and severity. A report records an observation; it does not approve a claim by itself.</p></div><form class="weather-form" id="weather-form"><label>Hazard<select name="coverage"><option value="0">Drought</option><option value="1">Flood</option><option value="2">Frost</option><option value="3">Pest</option><option value="4">Comprehensive</option></select></label><label>Region<input name="region" required /></label><label>Severity<input name="severity" inputmode="numeric" min="1" max="100" required /><span>1–100</span></label><button class="btn btn--primary" type="submit">Add weather report</button><p id="weather-status" role="status"></p></form><div class="weather-ledger" id="weather-ledger"><div><span>Report</span><span>Hazard</span><span>Region</span><span>Severity</span></div><p>No weather reports have been loaded.</p></div></div>
+      </section>
+
+      <section class="section" id="questions" aria-labelledby="questions-h"><div class="wrap faq-split"><div class="section-head"><h2 id="questions-h">Contract and wallet questions</h2><p>The limits matter before a wallet signs.</p><a class="link" href="https://scan.botchain.ai" target="_blank" rel="noreferrer">Open BOT Chain explorer</a></div><div class="faq"><div class="faq__item"><h3>Is this traditional crop insurance?</h3><p>No. TERROWA is an experimental smart-contract coverage pool and has not been presented as a licensed insurance product.</p></div><div class="faq__item"><h3>What does the wallet approve?</h3><p>Connection, a BOT value transfer for cover or stake, and the contract call shown in the wallet prompt.</p></div><div class="faq__item"><h3>Where is evidence stored?</h3><p>The contract stores the CID. The evidence file remains on IPFS or the storage service that pins it.</p></div><div class="faq__item"><h3>Who pays a claim?</h3><p>The appointed assessor approves or rejects it. Approval transfers BOT from available contract liquidity.</p></div><div class="faq__item"><h3>Can I always withdraw a stake?</h3><p>No. The seven-day lock must pass, and the pool must remain solvent after the withdrawal.</p></div></div></div></section>
+    </main>
+
+    <footer class="footer closing bg-halo" id="contact" aria-labelledby="close-h"><div class="wrap"><div class="closing__cta close--word"><div class="close-head"><div><h2 id="close-h">Configure one policy first</h2><p>Connect a wallet on BOT Chain, check the premium and payout cap, then approve the contract call in the wallet.</p></div><a class="btn btn--primary" href="#buy">Configure crop cover<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a></div><div class="closing-name">TERROWA</div></div><div class="closing__links"><div class="grid"><div class="span-4"><a class="nav__logo" href="#top">TERROWA</a><p class="footer__lede">Experimental crop coverage on BOT Chain.</p></div><div class="span-2 start-7 footer__col"><h3>Workspace</h3><a href="#buy">Cover</a><a href="#policies">Policies</a><a href="#claims">Claims</a></div><div class="span-2 footer__col"><h3>Pool</h3><a href="#pool">Reserve</a><a href="#weather">Weather</a><a href="#questions">Questions</a></div><div class="span-2 footer__col"><h3>Network</h3><a href="https://scan.botchain.ai" target="_blank" rel="noreferrer">Explorer</a><a href="https://botchain.ai" target="_blank" rel="noreferrer">BOT Chain</a></div></div><div class="footer__legal"><span>© 2026 TERROWA</span><span>Experimental software · unaudited contract</span><span>Network 677</span></div></div></div></footer>
+
+    <script type="module" src="/assets/system.js"></script>
+    <script type="module" src="/assets/layout/layout.js"></script>
+    <script type="module" src="/assets/motion/motion.js"></script>
+    <script src="/assets/backgrounds/backgrounds.js"></script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

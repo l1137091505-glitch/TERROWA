@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#dedad3"/>
+  <rect x="620" y="70" width="500" height="490" rx="8" fill="#d3cec6" stroke="#0a0a0a"/>
+  <path d="M690 180h360M690 260h360M690 340h360M690 420h360" stroke="#0a0a0a" opacity=".22"/>
+  <circle cx="970" cy="350" r="82" fill="#256f82"/>
+  <text x="78" y="110" font-family="Arial" font-size="28" fill="#0a0a0a">TERROWA</text>
+  <text x="78" y="240" font-family="Arial" font-size="70" fill="#0a0a0a">Crop coverage</text>
+  <text x="78" y="320" font-family="Arial" font-size="70" fill="#0a0a0a">for BOT Chain farms</text>
+  <text x="78" y="510" font-family="monospace" font-size="22" fill="#55514c">POLICY · CLAIM · RESERVE</text>
+</svg>

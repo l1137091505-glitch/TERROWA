@@ -1,0 +1,14 @@
+{
+  "selected": "TERROWA",
+  "searched": true,
+  "queries": [
+    {
+      "query": "\"SowGuard\" crop insurance software",
+      "result": "Rejected: an unrelated software utility named sowguard appeared in search results."
+    },
+    {
+      "query": "\"Terrowa\" crop insurance",
+      "result": "Selected: no exact-name crop insurance or blockchain product appeared in the first search results."
+    }
+  ]
+}
